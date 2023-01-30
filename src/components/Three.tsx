@@ -1,78 +1,44 @@
-import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
-import { Mesh } from "three";
-
-const getRndInteger = (min: number, max: number) => {
-  return (Math.floor(Math.random() * (max - min + 1)) + min) * 0.01;
-};
-const randNum = (min: number, max: number) => {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-};
-
-const randColor = () => "#" + ((Math.random() * 0xffffff) << 0).toString(16);
-
-const Cube = ({ speed, color }: { speed: number; color: string }) => {
-  const meshRef = useRef<Mesh>(null);
-  useFrame(() => {
-    if (!meshRef.current) {
-      return;
-    }
-    meshRef.current.rotation.x += speed;
-    meshRef.current.rotation.y += speed;
-    // meshRef.current.rotation.y += randNum(0.01, 0.02);
-    // meshRef.current.rotation.y += randNum(0.01, 0.02);
-  });
-
-  return (
-    <mesh
-      ref={meshRef}
-      position={[randNum(-2, 2), randNum(-2, 2), randNum(0, 1)]}
-      // position={[randNum(-1,1), 0, randNum(-1,1)]}
-    >
-      <boxGeometry args={[randNum(-2, 2), randNum(-2, 2), randNum(-2, 2)]} />
-      <meshStandardMaterial color={color} />
-    </mesh>
-  );
-};
+import { Cube } from "./Cube";
+import { Sphere } from "./Sphere";
+import {
+  getRndInteger,
+  randArray,
+  randArrayPosNeg,
+  randColor,
+  randomPosNegNum,
+} from "./utils";
 
 export const Three = () => {
   return (
     <div style={{ height: "100vh" }}>
-      <Canvas>
+      <Canvas style={{ background: "black" }}>
         {/* <Canvas camera={{ position: [0, 0, 5] }}> */}
-        <PerspectiveCamera fov={75} makeDefault position={[0, 0, 10]} />
+        <PerspectiveCamera fov={75} makeDefault position={[0, 0, 20]} />
         <ambientLight />
-        <pointLight position={[10, 10, 10]} />
+        <pointLight position={[10, 10, 1]} />
         <group>
           <>
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
-            <Cube speed={getRndInteger(0, 4)} color={randColor()} />
+            {[...Array(100)].map(() => {
+              return (
+                <Cube
+                  boxSize={randArray()}
+                  speed={getRndInteger(0, 1.2)}
+                  color={randColor()}
+                  position={randArrayPosNeg()}
+                />
+              );
+            })}
+            {[...Array(300)].map(() => {
+              return (
+                <Sphere
+                  color={randColor()}
+                  position={randArrayPosNeg()}
+                  size={randArray()}
+                />
+              );
+            })}
           </>
         </group>
       </Canvas>

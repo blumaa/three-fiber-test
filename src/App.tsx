@@ -1,4 +1,5 @@
 import { Three } from "./components/Three";
+import './App.css'
 
 function App() {
 
