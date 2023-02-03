@@ -13,7 +13,7 @@ const randArray = (): [number, number, number] => [
   randNum(-3, 3),
 ];
 
-const randomPosNegNum =()=> Math.floor(Math.random() * 31) - 19;
+const randomPosNegNum =()=> Math.floor(Math.random() * 50) - 25;
 
 const randArrayPosNeg = (): [number, number, number] => [
   randomPosNegNum(),

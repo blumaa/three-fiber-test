@@ -20,20 +20,23 @@ export const Three = () => {
         <pointLight position={[10, 10, 1]} />
         <group>
           <>
-            {[...Array(100)].map(() => {
-              return (
-                <Cube
-                  boxSize={randArray()}
-                  speed={getRndInteger(0, 1.2)}
-                  color={randColor()}
-                  position={randArrayPosNeg()}
-                />
-              );
-            })}
-            {[...Array(300)].map(() => {
+            {/* {[...Array(100)].map(() => { */}
+            {/*   return ( */}
+            {/*     <Cube */}
+            {/*       boxSize={[2,3,2]} */}
+            {/*       // boxSize={randArray()} */}
+            {/*       speed={getRndInteger(0, 1.2)} */}
+            {/*       // color={randColor()} */}
+            {/*       position={randArrayPosNeg()} */}
+            {/*     /> */}
+            {/*   ); */}
+            {/* })} */}
+            {[...Array(30)].map(() => {
               return (
                 <Sphere
-                  color={randColor()}
+                  // color={randColor()}
+                  color={"grey"}
+                  speed={getRndInteger(1, 20)}
                   position={randArrayPosNeg()}
                   size={randArray()}
                 />

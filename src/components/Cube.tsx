@@ -5,12 +5,12 @@ import { Mesh } from "three";
 export const Cube = ({
   boxSize = [1, 1, 1],
   speed,
-  color,
+  color = "white",
   position = [0, 0, 0],
 }: {
   boxSize: [number, number, number];
   speed: number;
-  color: string;
+  color?: string;
   position: [number, number, number];
 }) => {
   const meshRef = useRef<Mesh>(null);
@@ -20,6 +20,8 @@ export const Cube = ({
     }
     meshRef.current.rotation.x += speed;
     meshRef.current.rotation.y += speed;
+    meshRef.current.position.y += speed;
+    meshRef.current.position.x += speed;
     // meshRef.current.rotation.y += randNum(0.01, 0.02);
     // meshRef.current.rotation.y += randNum(0.01, 0.02);
   });
