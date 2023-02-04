@@ -31,14 +31,14 @@ export const Three = () => {
             {/*     /> */}
             {/*   ); */}
             {/* })} */}
-            {[...Array(30)].map(() => {
+            {[...Array(330)].map(() => {
               return (
                 <Sphere
                   // color={randColor()}
                   color={"grey"}
-                  speed={getRndInteger(1, 20)}
+                  speed={getRndInteger(1, 30)}
                   position={randArrayPosNeg()}
-                  size={randArray()}
+                  size={2}
                 />
               );
             })}
